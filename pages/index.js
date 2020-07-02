@@ -7,14 +7,22 @@ export default function Home() {
   // Our custom hook to get context values
   const { loadingUser, user } = useUser()
 
+
+
   useEffect(() => {
     if (!loadingUser) {
       // You know that the user is loaded: either logged in or out!
       console.log(user)
     }
-    // You also have your firebase app initialized
-    console.log(firebase)
   }, [loadingUser, user])
+
+  const pushData = () => {
+    const db = firebase.firestore()
+    db.collection('walkers').add({
+      name: '山田 花子',
+      breedingYear: 12,
+    })
+  }
 
   return (
     <div className="container">
@@ -24,8 +32,8 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className="title">Next.js w/ Firebase Client-Side</h1>
-        <p className="description">Fill in your credentials to get started</p>
+        <h1 className="title">犬サイト</h1>
+        <button style={{ marginTop: '20px' }} onClick={() => { pushData() }}>テスト送信</button>
       </main>
 
       <style jsx>{`
