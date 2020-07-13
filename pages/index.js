@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useEffect } from 'react';
 import { useUser } from '../context/userContext';
 import firebase from '../firebase/clientApp';
+import { Button } from '@material-ui/core';
 
 export default function Home() {
   // Our custom hook to get context values
@@ -32,14 +33,16 @@ export default function Home() {
 
       <main>
         <h1 className="title">犬サイト</h1>
-        <button
-          style={{ marginTop: '20px' }}
+        <Button
+          style={{ marginTop: '20px', color: '#FFF' }}
           onClick={() => {
             pushData();
           }}
+          color="primary"
+          variant="contained"
         >
           テスト送信
-        </button>
+        </Button>
       </main>
 
       <style jsx>{`

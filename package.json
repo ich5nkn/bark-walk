@@ -8,6 +8,7 @@
     "lint": "eslint . --ext .js,.jsx --fix"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "date-fns": "^2.14.0",
     "firebase": "7.11.0",
     "material-ui": "^0.20.2",
