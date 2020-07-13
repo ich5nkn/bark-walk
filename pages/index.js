@@ -1,28 +1,27 @@
-import Head from 'next/head'
-import { useEffect } from 'react'
-import { useUser } from '../context/userContext'
-import firebase from '../firebase/clientApp'
+import React from 'react';
+import Head from 'next/head';
+import { useEffect } from 'react';
+import { useUser } from '../context/userContext';
+import firebase from '../firebase/clientApp';
 
 export default function Home() {
   // Our custom hook to get context values
-  const { loadingUser, user } = useUser()
-
-
+  const { loadingUser, user } = useUser();
 
   useEffect(() => {
     if (!loadingUser) {
       // You know that the user is loaded: either logged in or out!
-      console.log(user)
+      console.log(user);
     }
-  }, [loadingUser, user])
+  }, [loadingUser, user]);
 
   const pushData = () => {
-    const db = firebase.firestore()
+    const db = firebase.firestore();
     db.collection('walkers').add({
       name: '山田 花子',
       breedingYear: 12,
-    })
-  }
+    });
+  };
 
   return (
     <div className="container">
@@ -33,7 +32,14 @@ export default function Home() {
 
       <main>
         <h1 className="title">犬サイト</h1>
-        <button style={{ marginTop: '20px' }} onClick={() => { pushData() }}>テスト送信</button>
+        <button
+          style={{ marginTop: '20px' }}
+          onClick={() => {
+            pushData();
+          }}
+        >
+          テスト送信
+        </button>
       </main>
 
       <style jsx>{`
@@ -177,5 +183,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
