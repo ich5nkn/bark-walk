@@ -29,3 +29,6 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 .env
+
+# eslintのキャッシュファイルが毎回作成されるのでgit管理から除外
+.eslintcache
