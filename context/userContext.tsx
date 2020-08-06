@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect, createContext, useContext } from 'react';
 import firebase from '../firebase/clientApp';
 
-export const UserContext = createContext();
+export const UserContext = createContext(null);
 
 export default function UserContextComp({ children }) {
   const [user, setUser] = useState(null);
