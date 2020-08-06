@@ -1,6 +1,6 @@
 import React from 'react';
 import UserProvider from '../context/userContext';
-import theme from '../components/theme.ts';
+import theme from '../components/theme';
 import { ThemeProvider } from '@material-ui/core';
 import Head from 'next/head';
 // app bar
