@@ -12,6 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import 'fontsource-roboto';
 
 // Custom App to wrap it with context provider
 export default function App({ Component, pageProps }) {
@@ -30,6 +31,10 @@ export default function App({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <Head>
           <title>Bark Walk</title>
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>
