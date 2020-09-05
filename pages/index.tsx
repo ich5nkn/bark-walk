@@ -7,6 +7,8 @@ import { useUser } from '../context/userContext';
 import { Typography, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import PeopleIcon from '@material-ui/icons/People';
+import EventNoteIcon from '@material-ui/icons/EventNote';
 
 const useStyles = makeStyles((theme) => ({
   block1: {
@@ -23,6 +25,25 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
     padding: '20px',
     textShadow: '1px 1px black',
+  },
+  featureBullet: {
+    color: '#5EAFC2',
+    fontSize: 30,
+    verticalAlign: 'middle',
+    fontWeight: 'bold',
+  },
+  step: {
+    textAlign: 'center',
+    marginBottom: '20px',
+  },
+  numberCircle: {
+    height: 30,
+    width: 30,
+    borderRadius: '100%',
+    backgroundColor: '#777',
+    color: '#FFF',
+    margin: '0 auto',
+    lineHeight: '30px',
   },
 }));
 
@@ -70,105 +91,102 @@ export default function Home() {
         </Typography>
         <ul style={{ listStyle: 'none', paddingLeft: 0, color: '#555' }}>
           <li>
-            <span
-              style={{
-                color: '#5EAFC2',
-                fontSize: 30,
-                verticalAlign: 'middle',
-                fontWeight: 'bold',
-              }}
-            >
-              ・
-            </span>
+            <span className={classes.featureBullet}>・</span>
             厳正な審査を合格した信頼できるドッグウォーカーだけ
           </li>
           <li>
-            <span
-              style={{
-                color: '#5EAFC2',
-                fontSize: 30,
-                verticalAlign: 'middle',
-                fontWeight: 'bold',
-              }}
-            >
-              ・
-            </span>
+            <span className={classes.featureBullet}>・</span>
             ドッグウォーカーから毎日のお散歩レポートが届く
           </li>
           <li>
-            <span
-              style={{
-                color: '#5EAFC2',
-                fontSize: 30,
-                verticalAlign: 'middle',
-                fontWeight: 'bold',
-              }}
-            >
-              ・
-            </span>
+            <span className={classes.featureBullet}>・</span>
             もしもの時のための、２４時間電話サポート
           </li>
         </ul>
       </div>
-      <div style={{ backgroundColor: '#DDD' }}>
-        <div style={{ margin: '20px 20px 0', textAlign: 'center' }}>
-          <Typography color="primary" style={{ fontSize: 24 }}>
-            利用開始までのステップ
-          </Typography>
-          <Grid container style={{ textAlign: 'center' }}>
-            <Grid item xs={12} md={4} style={{ textAlign: 'center' }}>
-              <div
-                style={{
-                  height: 20,
-                  width: 20,
-                  borderRadius: '100%',
-                  backgroundColor: '#777',
-                  color: '#FFF',
-                  margin: '0 auto',
-                }}
-              >
-                1
-              </div>
-              <Typography style={{ color: '#777' }}>
-                ドッグウォーカーを探す
-              </Typography>
-              <SearchIcon />
-              ご近所にお住まいのドッグウォーカーを探します
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <div
-                style={{
-                  height: 20,
-                  width: 20,
-                  borderRadius: '100%',
-                  backgroundColor: '#777',
-                  color: '#FFF',
-                  margin: '0 auto',
-                }}
-              >
-                2
-              </div>
-              <Typography style={{ color: '#777' }}>事前面談をする</Typography>
-              気になるドッグウォーカーを見つけたら直接面談します
-            </Grid>
-            <Grid item xs={12} md={4}>
-              <div
-                style={{
-                  height: 20,
-                  width: 20,
-                  borderRadius: '100%',
-                  backgroundColor: '#777',
-                  color: '#FFF',
-                  margin: '0 auto',
-                }}
-              >
-                3
-              </div>
-              <Typography style={{ color: '#777' }}>予約を入れる</Typography>
-              ドッグウォーカーのスケジュールを確認して予約します
-            </Grid>
+      <div
+        style={{
+          backgroundColor: '#DDD',
+          padding: '20px 0',
+          textAlign: 'center',
+        }}
+      >
+        <Typography color="primary" style={{ fontSize: 24, marginBottom: 10 }}>
+          利用開始までのステップ
+        </Typography>
+        <Grid container style={{ textAlign: 'center' }}>
+          <Grid item xs={12} md={4} className={classes.step}>
+            <div className={classes.numberCircle}>1</div>
+            <Typography variant="h6" component="h3" style={{ color: '#777' }}>
+              ドッグウォーカーを探す
+            </Typography>
+            <SearchIcon style={{ width: 80, height: 80 }} />
+            <Typography style={{ color: '#777' }}>
+              ご近所にお住まいの
+              <br />
+              ドッグウォーカーを探します
+            </Typography>
           </Grid>
-        </div>
+          <Grid item xs={12} md={4} className={classes.step}>
+            <div className={classes.numberCircle}>2</div>
+            <Typography variant="h6" component="h3" style={{ color: '#777' }}>
+              事前面談をする
+            </Typography>
+            <PeopleIcon style={{ width: 80, height: 80 }} />
+            <Typography style={{ color: '#777' }}>
+              気になるドッグウォーカーを見つけたら
+              <br />
+              直接面談します
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={4} className={classes.step}>
+            <div className={classes.numberCircle}>3</div>
+            <Typography variant="h6" component="h3" style={{ color: '#777' }}>
+              予約を入れる
+            </Typography>
+            <EventNoteIcon style={{ width: 80, height: 80 }} />
+            <Typography style={{ color: '#777' }}>
+              ドッグウォーカーのスケジュールを
+              <br />
+              確認して予約します
+            </Typography>
+          </Grid>
+
+          {/* <Grid item xs={12} md={4}>
+            <div
+              style={{
+                height: 20,
+                width: 20,
+                borderRadius: '100%',
+                backgroundColor: '#777',
+                color: '#FFF',
+                margin: '0 auto',
+              }}
+            >
+              2
+            </div>
+            <Typography style={{ color: '#777' }}>事前面談をする</Typography>
+            <PeopleIcon />
+            気になるドッグウォーカーを見つけたら直接面談します
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <div
+              style={{
+                height: 20,
+                width: 20,
+                borderRadius: '100%',
+                backgroundColor: '#777',
+                color: '#FFF',
+                margin: '0 auto',
+              }}
+            >
+              3
+            </div>
+            <Typography style={{ color: '#777' }}>予約を入れる</Typography>
+            <EventNoteIcon />
+            ドッグウォーカーのスケジュールを確認して予約します
+          </Grid> */}
+        </Grid>
       </div>
     </>
   );
