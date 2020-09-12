@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }) {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>
-          <AppBar position="static" style={{ width: '100%', flexGrow: 1 }}>
+          <AppBar position="fixed" style={{ width: '100%', flexGrow: 1 }}>
             <Toolbar>
               <IconButton
                 edge="start"
@@ -71,7 +71,9 @@ export default function App({ Component, pageProps }) {
               <Button color="inherit">Login</Button>
             </Toolbar>
           </AppBar>
-          <Component {...pageProps} />
+          <div style={{ marginTop: 56 }}>
+            <Component {...pageProps} />
+          </div>
         </body>
         <style jsx global>{`
           html,
