@@ -47,6 +47,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const ReviewCard = (title: string, text: string, image?: string) => {
+  return (
+    <Grid item xs={2}>
+      <Card style={{ backgroundColor: '#DDD' }}>
+        <div
+          style={
+            image
+              ? { background: 'url(/' + image + ')' }
+              : { height: 150, backgroundColor: '#857' }
+          }
+        ></div>
+        <div style={{ height: 250, textAlign: 'center' }}>
+          <Typography variant="h5" component="h3" style={{ marginTop: 15 }}>
+            {title}
+          </Typography>
+          <Typography style={{ marginTop: 10 }}>{text}</Typography>
+        </div>
+      </Card>
+    </Grid>
+  );
+};
+
+const reviewItems = [
+  { title: 'Title1', text: 'text1', image: 'image1.png' },
+  { title: 'Title2', text: 'text2', image: 'image2.png' },
+  { title: 'Title3', text: 'text3', image: 'image3.png' },
+];
+
 export default function Home() {
   // Our custom hook to get context values
   const { loadingUser, user } = useUser();
@@ -156,21 +184,9 @@ export default function Home() {
 
       <div style={{ minWidth: 800 }}>
         <Grid container spacing={4}>
-          <Grid item xs={2}>
-            <Card style={{ backgroundColor: '#DDD' }}>
-              <div style={{ height: 150, backgroundColor: '#857' }}></div>
-              <div style={{ height: 250, textAlign: 'center' }}>
-                <Typography
-                  variant="h5"
-                  component="h3"
-                  style={{ marginTop: 15 }}
-                >
-                  {'Title'}
-                </Typography>
-                <Typography style={{ marginTop: 10 }}>{'text'}</Typography>
-              </div>
-            </Card>
-          </Grid>
+          {reviewItems.map((item) => {
+            return ReviewCard(item.title, item.text, item.image);
+          })}
         </Grid>
       </div>
 
