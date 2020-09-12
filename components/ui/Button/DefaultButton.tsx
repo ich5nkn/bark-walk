@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 
 const DefaultButton = ({ children }) => {
   return (
-    <Button variant="contained" color="primary">
+    <Button variant="contained" color="primary" style={{ color: '#FFF' }}>
       {children}
     </Button>
   );

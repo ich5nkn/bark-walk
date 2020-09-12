@@ -3,8 +3,8 @@ import { useEffect } from 'react';
 import { useUser } from '../context/userContext';
 // import firebase from '../firebase/clientApp';
 // import Button from '@material-ui/core/Button';
-// import DefaultButton from '../components/ui/Button/DefaultButton';
-import { Typography, Grid } from '@material-ui/core';
+import DefaultButton from '../components/ui/Button/DefaultButton';
+import { Typography, Grid, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
@@ -47,6 +47,51 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const ReviewCard = (title: string, text: string, image?: string) => {
+  return (
+    <div style={{ display: 'inline-block', padding: 10 }}>
+      <Card style={{ width: 260, backgroundColor: '#DDD' }}>
+        <div
+          style={
+            image
+              ? { height: 180, background: 'url(/' + image + ')' }
+              : { height: 180, backgroundColor: '#857' }
+          }
+        ></div>
+        <div style={{ height: '280px', textAlign: 'center' }}>
+          <Typography variant="h5" component="h3" style={{ margin: '30px 0' }}>
+            {title}
+          </Typography>
+          <Typography style={{ padding: '0 20px', whiteSpace: 'normal' }}>
+            {text}
+          </Typography>
+        </div>
+      </Card>
+    </div>
+  );
+};
+
+const reviewItems = [
+  {
+    title: '佐藤さん',
+    text:
+      '仕事で忙しくて毎日なかなか構ってあげられませんでしたが、Bark Walkで信頼できるドッグウォーカーを見つけることができ、日中は毎日散歩をしてもらっています',
+    image: 'sato.png',
+  },
+  {
+    title: '山口さん',
+    text:
+      '出張や残業が多く、ワンちゃんには寂しい思いをさせることが多かったのですが、ドッグウォーカーさんに依頼するようになってから、ワンちゃんの日中の遊び相手が出来てイキイキするようになりました！',
+    image: 'yamaguchi.png',
+  },
+  {
+    title: '田中さん',
+    text:
+      'いつもBark Walkを利用しています。24時間サポートのおかげで、安心してサービスを利用することができています。大切な愛犬を心配なく預けることができています。',
+    image: 'tanaka.png',
+  },
+];
+
 export default function Home() {
   // Our custom hook to get context values
   const { loadingUser, user } = useUser();
@@ -69,7 +114,6 @@ export default function Home() {
   // };
 
   return (
-    // staticファイルが正常に読み込めないのはなぜ？
     <>
       <div className={classes.block1}>
         <Typography variant="h4" component="h1" className={classes.block1Title}>
@@ -151,42 +195,50 @@ export default function Home() {
               確認して予約します
             </Typography>
           </Grid>
-
-          {/* <Grid item xs={12} md={4}>
-            <div
-              style={{
-                height: 20,
-                width: 20,
-                borderRadius: '100%',
-                backgroundColor: '#777',
-                color: '#FFF',
-                margin: '0 auto',
-              }}
-            >
-              2
-            </div>
-            <Typography style={{ color: '#777' }}>事前面談をする</Typography>
-            <PeopleIcon />
-            気になるドッグウォーカーを見つけたら直接面談します
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <div
-              style={{
-                height: 20,
-                width: 20,
-                borderRadius: '100%',
-                backgroundColor: '#777',
-                color: '#FFF',
-                margin: '0 auto',
-              }}
-            >
-              3
-            </div>
-            <Typography style={{ color: '#777' }}>予約を入れる</Typography>
-            <EventNoteIcon />
-            ドッグウォーカーのスケジュールを確認して予約します
-          </Grid> */}
         </Grid>
+        <DefaultButton>ご近所のドッグウォーカーを検索する</DefaultButton>
+      </div>
+
+      <div
+        style={{
+          padding: '20px 0',
+          textAlign: 'center',
+        }}
+      >
+        <Typography color="primary" style={{ fontSize: 24, marginBottom: 10 }}>
+          実際に利用されている方々の声
+        </Typography>
+        <div
+          style={{
+            overflowX: 'auto',
+            width: '95%',
+            margin: '0 auto',
+            display: 'flex',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {reviewItems.map((item) => {
+            return ReviewCard(item.title, item.text, item.image);
+          })}
+        </div>
+      </div>
+      <div
+        style={{
+          padding: '20px 0',
+          textAlign: 'center',
+        }}
+      >
+        <Typography color="primary" style={{ fontSize: 24, marginBottom: 10 }}>
+          ドッグウォーカーになる
+        </Typography>
+        <Typography>
+          犬が大好きで、ペット飼育経験のある方、
+          <br />
+          犬と関わることを仕事にしたい方。
+          <br />
+          まずは会員登録してドッグウォーカーになるためのステップを確認しましょう！
+        </Typography>
+        <DefaultButton>ご近所のドッグウォーカーを検索する</DefaultButton>
       </div>
     </>
   );
