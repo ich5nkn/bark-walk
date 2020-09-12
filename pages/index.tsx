@@ -4,7 +4,7 @@ import { useUser } from '../context/userContext';
 // import firebase from '../firebase/clientApp';
 // import Button from '@material-ui/core/Button';
 // import DefaultButton from '../components/ui/Button/DefaultButton';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
@@ -151,8 +151,30 @@ export default function Home() {
               確認して予約します
             </Typography>
           </Grid>
+        </Grid>
+      </div>
 
-          {/* <Grid item xs={12} md={4}>
+      <div style={{ minWidth: 800 }}>
+        <Grid container spacing={4}>
+          <Grid item xs={2}>
+            <Card style={{ backgroundColor: '#DDD' }}>
+              <div style={{ height: 150, backgroundColor: '#857' }}></div>
+              <div style={{ height: 250, textAlign: 'center' }}>
+                <Typography
+                  variant="h5"
+                  component="h3"
+                  style={{ marginTop: 15 }}
+                >
+                  {'Title'}
+                </Typography>
+                <Typography style={{ marginTop: 10 }}>{'text'}</Typography>
+              </div>
+            </Card>
+          </Grid>
+        </Grid>
+      </div>
+
+      {/* <Grid item xs={12} md={4}>
             <div
               style={{
                 height: 20,
@@ -186,8 +208,6 @@ export default function Home() {
             <EventNoteIcon />
             ドッグウォーカーのスケジュールを確認して予約します
           </Grid> */}
-        </Grid>
-      </div>
     </>
   );
 }
