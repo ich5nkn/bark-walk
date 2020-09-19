@@ -13,10 +13,13 @@
     "date-fns": "^2.14.0",
     "firebase": "7.11.0",
     "fontsource-roboto": "^3.0.3",
+    "js-cookie": "^2.2.1",
     "material-ui": "^0.20.2",
     "next": "latest",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-firebaseui": "^4.1.0",
+    "swr": "^0.3.2"
   },
   "devDependencies": {
     "@types/node": "^14.0.14",
@@ -43,5 +46,6 @@
       "yarn eslint --cache --fix",
       "git add"
     ]
-  }
+  },
+  "license": "UNLICENSED"
 }

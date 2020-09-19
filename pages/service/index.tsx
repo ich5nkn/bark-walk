@@ -1,9 +1,9 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { useUser } from '../context/userContext';
+import { useUser } from '../../context/userContext';
 // import firebase from '../firebase/clientApp';
 // import Button from '@material-ui/core/Button';
-import DefaultButton from '../components/ui/Button/DefaultButton';
+import DefaultButton from '../../components/ui/Button/DefaultButton';
 import { Typography, Grid, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
