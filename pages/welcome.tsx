@@ -1,120 +1,98 @@
-import React from 'react';
-import { useEffect } from 'react';
-import { useUser } from '../../context/userContext';
-// import firebase from '../firebase/clientApp';
-// import Button from '@material-ui/core/Button';
-import DefaultButton from '../../components/ui/Button/DefaultButton';
-import { Typography, Grid, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
 import EventNoteIcon from '@material-ui/icons/EventNote';
+import DefaultButton from '../components/ui/Button/DefaultButton';
+import { Typography, Grid, Card } from '@material-ui/core';
+import { useRouter } from 'next/router'
 
 const useStyles = makeStyles((theme) => ({
-  block1: {
-    height: '300px',
-    background: "url('/hero.jpg') no-repeat center center",
-    backgroundSize: 'cover',
-  },
-  block1Title: {
-    color: 'white',
-    padding: '40px 20px 0px',
-    textShadow: '1px 1px black',
-  },
-  block1Text: {
-    color: 'white',
-    padding: '20px',
-    textShadow: '1px 1px black',
-  },
-  featureBullet: {
-    color: '#5EAFC2',
-    fontSize: 30,
-    verticalAlign: 'middle',
-    fontWeight: 'bold',
-  },
-  step: {
-    textAlign: 'center',
-    marginBottom: '20px',
-  },
-  numberCircle: {
-    height: 30,
-    width: 30,
-    borderRadius: '100%',
-    backgroundColor: '#777',
-    color: '#FFF',
-    margin: '0 auto',
-    lineHeight: '30px',
-  },
-}));
+    block1: {
+      height: '300px',
+      background: "url('/hero.jpg') no-repeat center center",
+      backgroundSize: 'cover',
+    },
+    block1Title: {
+      color: 'white',
+      padding: '40px 20px 0px',
+      textShadow: '1px 1px black',
+    },
+    block1Text: {
+      color: 'white',
+      padding: '20px',
+      textShadow: '1px 1px black',
+    },
+    featureBullet: {
+      color: '#5EAFC2',
+      fontSize: 30,
+      verticalAlign: 'middle',
+      fontWeight: 'bold',
+    },
+    step: {
+      textAlign: 'center',
+      marginBottom: '20px',
+    },
+    numberCircle: {
+      height: 30,
+      width: 30,
+      borderRadius: '100%',
+      backgroundColor: '#777',
+      color: '#FFF',
+      margin: '0 auto',
+      lineHeight: '30px',
+    },
+  }));
 
-const ReviewCard = (title: string, text: string, image?: string) => {
-  return (
-    <div style={{ display: 'inline-block', padding: 10 }}>
-      <Card style={{ width: 260, backgroundColor: '#DDD' }}>
-        <div
-          style={
-            image
-              ? { height: 180, background: 'url(/' + image + ')' }
-              : { height: 180, backgroundColor: '#857' }
-          }
-        ></div>
-        <div style={{ height: '280px', textAlign: 'center' }}>
-          <Typography variant="h5" component="h3" style={{ margin: '30px 0' }}>
-            {title}
-          </Typography>
-          <Typography style={{ padding: '0 20px', whiteSpace: 'normal' }}>
-            {text}
-          </Typography>
-        </div>
-      </Card>
-    </div>
-  );
-};
+  const ReviewCard = (title: string, text: string, image?: string) => {
+    return (
+      <div style={{ display: 'inline-block', padding: 10 }}>
+        <Card style={{ width: 260, backgroundColor: '#DDD' }}>
+          <div
+            style={
+              image
+                ? { height: 180, background: 'url(/' + image + ')' }
+                : { height: 180, backgroundColor: '#857' }
+            }
+          ></div>
+          <div style={{ height: '280px', textAlign: 'center' }}>
+            <Typography variant="h5" component="h3" style={{ margin: '30px 0' }}>
+              {title}
+            </Typography>
+            <Typography style={{ padding: '0 20px', whiteSpace: 'normal' }}>
+              {text}
+            </Typography>
+          </div>
+        </Card>
+      </div>
+    );
+  };
+  
+  const reviewItems = [
+    {
+      title: '佐藤さん',
+      text:
+        '仕事で忙しくて毎日なかなか構ってあげられませんでしたが、Bark Walkで信頼できるドッグウォーカーを見つけることができ、日中は毎日散歩をしてもらっています',
+      image: 'sato.png',
+    },
+    {
+      title: '山口さん',
+      text:
+        '出張や残業が多く、ワンちゃんには寂しい思いをさせることが多かったのですが、ドッグウォーカーさんに依頼するようになってから、ワンちゃんの日中の遊び相手が出来てイキイキするようになりました！',
+      image: 'yamaguchi.png',
+    },
+    {
+      title: '田中さん',
+      text:
+        'いつもBark Walkを利用しています。24時間サポートのおかげで、安心してサービスを利用することができています。大切な愛犬を心配なく預けることができています。',
+      image: 'tanaka.png',
+    },
+  ];
 
-const reviewItems = [
-  {
-    title: '佐藤さん',
-    text:
-      '仕事で忙しくて毎日なかなか構ってあげられませんでしたが、Bark Walkで信頼できるドッグウォーカーを見つけることができ、日中は毎日散歩をしてもらっています',
-    image: 'sato.png',
-  },
-  {
-    title: '山口さん',
-    text:
-      '出張や残業が多く、ワンちゃんには寂しい思いをさせることが多かったのですが、ドッグウォーカーさんに依頼するようになってから、ワンちゃんの日中の遊び相手が出来てイキイキするようになりました！',
-    image: 'yamaguchi.png',
-  },
-  {
-    title: '田中さん',
-    text:
-      'いつもBark Walkを利用しています。24時間サポートのおかげで、安心してサービスを利用することができています。大切な愛犬を心配なく預けることができています。',
-    image: 'tanaka.png',
-  },
-];
-
-export default function Home() {
-  // Our custom hook to get context values
-  const { loadingUser, user } = useUser();
-  const classes = useStyles();
-
-  useEffect(() => {
-    if (!loadingUser) {
-      // You know that the user is loaded: either logged in or out!
-      console.log(user);
-    }
-  }, [loadingUser, user]);
-
-  // Firebase接続確認用のテストコード
-  // const pushData = () => {
-  //   const db = firebase.firestore();
-  //   db.collection('walkers').add({
-  //     name: '山田 花子',
-  //     breedingYear: 12,
-  //   });
-  // };
-
-  return (
-    <>
+export default () => {
+    const classes = useStyles();
+    const router = useRouter()
+    return (
+        <>
       <div className={classes.block1}>
         <Typography variant="h4" component="h1" className={classes.block1Title}>
           ドッグウォーカーがあなたの愛犬の散歩をします
@@ -196,7 +174,7 @@ export default function Home() {
             </Typography>
           </Grid>
         </Grid>
-        <DefaultButton>ご近所のドッグウォーカーを検索する</DefaultButton>
+        <DefaultButton onClick={()=>router.push('/search/')}>ご近所のドッグウォーカーを検索する</DefaultButton>
       </div>
 
       <div
@@ -238,8 +216,8 @@ export default function Home() {
           <br />
           まずは会員登録してドッグウォーカーになるためのステップを確認しましょう！
         </Typography>
-        <DefaultButton>ご近所のドッグウォーカーを検索する</DefaultButton>
+        <DefaultButton onClick={()=>{router.push('/auth')}}>会員登録する</DefaultButton>
       </div>
     </>
-  );
+    )
 }

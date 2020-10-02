@@ -1,63 +1,31 @@
-import useSWR from 'swr'
-import Link from 'next/link'
+import React from 'react';
+// import useSWR from 'swr';
+// import { useEffect } from 'react';
 import { useUser } from '../utils/auth/useUser'
+import Welcome from './welcome';
+// import firebase from '../firebase/clientApp';
+// import Button from '@material-ui/core/Button';
+// import DefaultButton from '../components/ui/Button/DefaultButton';
+// import { Typography, Grid, Card } from '@material-ui/core';
+// import { makeStyles } from '@material-ui/core';
+// import SearchIcon from '@material-ui/icons/Search';
+// import PeopleIcon from '@material-ui/icons/People';
+// import EventNoteIcon from '@material-ui/icons/EventNote';
+// import { useRouter } from 'next/router'
 
-const fetcher = (url, token) =>
-  fetch(url, {
-    method: 'GET',
-    headers: new Headers({ 'Content-Type': 'application/json', token }),
-    credentials: 'same-origin',
-  }).then((res) => res.json())
 
-const Index = () => {
-  const { user, logout } = useUser()
-  const { data, error } = useSWR(
-    user ? ['/api/getFood', user.token] : null,
-    fetcher
-  )
-  if (!user) {
-    return (
+
+export default function Home() {
+  const {user, logout} = useUser();
+  if(user){
+    return(
       <>
-        <p>Hi there!</p>
-        <p>
-          You are not signed in.{' '}
-          <Link href={'/auth'}>
-            <a>Sign in</a>
-          </Link>
-        </p>
+        <div>{user.uid}</div>
+        <button onClick={logout}></button>
       </>
     )
   }
-
   return (
-    <div>
-      <div>
-        <p>You're signed in. Email: {user.email}</p>
-        <p
-          style={{
-            display: 'inline-block',
-            color: 'blue',
-            textDecoration: 'underline',
-            cursor: 'pointer',
-          }}
-          onClick={() => logout()}
-        >
-          Log out
-        </p>
-      </div>
-      <div>
-        <Link href={'/example'}>
-          <a>Another example page</a>
-        </Link>
-      </div>
-      {error && <div>Failed to fetch food!</div>}
-      {data && !error ? (
-        <div>Your favorite food is {data.food}.</div>
-      ) : (
-        <div>Loading...</div>
-      )}
-    </div>
-  )
+    <Welcome />
+  );
 }
-
-export default Index
