@@ -1,6 +1,6 @@
 import React from 'react';
 import UserProvider from '../context/userContext';
-import theme from '../components/theme.ts';
+import theme from '../components/theme';
 import { ThemeProvider } from '@material-ui/core';
 import Head from 'next/head';
 // app bar
@@ -12,6 +12,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import 'fontsource-roboto';
+
+import { useUser } from '../utils/auth/useUser';
+import {useRouter} from 'next/router';
+import Link from 'next/link';
+
 
 // Custom App to wrap it with context provider
 export default function App({ Component, pageProps }) {
@@ -25,15 +31,23 @@ export default function App({ Component, pageProps }) {
     setAnchorEl(null);
   };
 
+  // ログイン判定
+  const { user, logout } = useUser()
+  const router = useRouter();
+
   return (
     <UserProvider>
       <ThemeProvider theme={theme}>
         <Head>
           <title>Bark Walk</title>
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>
-          <AppBar position="static" style={{ width: '100%', flexGrow: 1 }}>
+          <AppBar position="fixed" style={{ width: '100%', flexGrow: 1 }}>
             <Toolbar>
               <IconButton
                 edge="start"
@@ -60,13 +74,19 @@ export default function App({ Component, pageProps }) {
                 <MenuItem onClick={handleClose}>会員登録</MenuItem>
               </Menu>
               <Typography variant="h6" style={{ flexGrow: 1 }}>
-                Bark Walk
+                <Link href='/'>
+                  <a>Bark Walk</a>
+                </Link>
               </Typography>
-              <Button color="inherit">Sign Up</Button>
-              <Button color="inherit">Login</Button>
+              {user
+                ?<Button color="inherit" onClick={logout}>Logout</Button>
+                :<Button color="inherit" onClick={()=>router.push('/auth')}>Login</Button>
+              }
             </Toolbar>
           </AppBar>
-          <Component {...pageProps} />
+          <div style={{ marginTop: 56 }}>
+            <Component {...pageProps} />
+          </div>
         </body>
         <style jsx global>{`
           html,
@@ -80,6 +100,11 @@ export default function App({ Component, pageProps }) {
 
           * {
             box-sizing: border-box;
+          }
+
+          a {
+            color:inherit;
+            text-decoration:none;
           }
         `}</style>
       </ThemeProvider>

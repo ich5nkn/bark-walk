@@ -24,6 +24,6 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx", "pages/_index.jsx", "pages/index.jsx", "utils/auth/useUser.js"
   ]
 }
