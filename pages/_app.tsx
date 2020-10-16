@@ -15,9 +15,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import 'fontsource-roboto';
 
 import { useUser } from '../utils/auth/useUser';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
-
 
 // Custom App to wrap it with context provider
 export default function App({ Component, pageProps }) {
@@ -32,7 +31,7 @@ export default function App({ Component, pageProps }) {
   };
 
   // ログイン判定
-  const { user, logout } = useUser()
+  const { user, logout } = useUser();
   const router = useRouter();
 
   return (
@@ -74,14 +73,19 @@ export default function App({ Component, pageProps }) {
                 <MenuItem onClick={handleClose}>会員登録</MenuItem>
               </Menu>
               <Typography variant="h6" style={{ flexGrow: 1 }}>
-                <Link href='/'>
+                <Link href="/">
                   <a>Bark Walk</a>
                 </Link>
               </Typography>
-              {user
-                ?<Button color="inherit" onClick={logout}>Logout</Button>
-                :<Button color="inherit" onClick={()=>router.push('/auth')}>Login</Button>
-              }
+              {user ? (
+                <Button color="inherit" onClick={logout}>
+                  Logout
+                </Button>
+              ) : (
+                <Button color="inherit" onClick={() => router.push('/auth')}>
+                  Login
+                </Button>
+              )}
             </Toolbar>
           </AppBar>
           <div style={{ marginTop: 56 }}>
@@ -103,8 +107,8 @@ export default function App({ Component, pageProps }) {
           }
 
           a {
-            color:inherit;
-            text-decoration:none;
+            color: inherit;
+            text-decoration: none;
           }
         `}</style>
       </ThemeProvider>
