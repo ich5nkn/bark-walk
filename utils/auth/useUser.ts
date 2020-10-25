@@ -9,22 +9,15 @@ import {
   getUserFromCookie,
 } from './userCookies';
 import { mapUserData } from './mapUserData';
+import { UserData } from './userData';
 
 initFirebase();
 
-type UserData = {
-  id: string;
-  email: string;
-  token: string;
-  emailVerified: boolean;
-  photoURL: string;
-  displayName: string;
-  isAnonymous: boolean;
-  role: number;
-};
-
-const useUser = (): any => {
-  const [user, setUser] = useState<UserData | null>();
+const useUser = (): {
+  user: UserData | undefined;
+  logout: () => Promise<void>;
+} => {
+  const [user, setUser] = useState<UserData | undefined>();
   const router = useRouter();
 
   const logout = async () => {
