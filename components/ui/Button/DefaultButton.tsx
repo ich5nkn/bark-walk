@@ -13,6 +13,7 @@ const DefaultButton: React.FC<Props> = ({ children, onClick }) => {
       color="primary"
       style={{ color: '#FFF' }}
       onClick={onClick}
+      data-testid="defaultButton"
     >
       {children}
     </Button>
