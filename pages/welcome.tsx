@@ -6,6 +6,7 @@ import EventNoteIcon from '@material-ui/icons/EventNote';
 import DefaultButton from '../components/ui/Button/DefaultButton';
 import { Typography, Grid, Card } from '@material-ui/core';
 import { useRouter } from 'next/router';
+import Layout from '../components/ui/Layout';
 
 const useStyles = makeStyles(() => ({
   block1: {
@@ -93,7 +94,7 @@ const Welcome: React.FC = () => {
   const classes = useStyles();
   const router = useRouter();
   return (
-    <>
+    <Layout>
       <div className={classes.block1}>
         <Typography variant="h4" component="h1" className={classes.block1Title}>
           ドッグウォーカーがあなたの愛犬の散歩をします
@@ -212,7 +213,7 @@ const Welcome: React.FC = () => {
         <Typography color="primary" style={{ fontSize: 24, marginBottom: 10 }}>
           ドッグウォーカーになる
         </Typography>
-        <Typography>
+        <Typography style={{ marginBottom: 20 }}>
           犬が大好きで、ペット飼育経験のある方、
           <br />
           犬と関わることを仕事にしたい方。
@@ -227,7 +228,7 @@ const Welcome: React.FC = () => {
           会員登録する
         </DefaultButton>
       </div>
-    </>
+    </Layout>
   );
 };
 

@@ -45,10 +45,26 @@ const Navbar: React.FC = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>ドッグウォーカーを探す</MenuItem>
-          <MenuItem onClick={handleClose}>ドッグウォーカーになる</MenuItem>
-          <MenuItem onClick={handleClose}>サービスについて</MenuItem>
-          <MenuItem onClick={handleClose}>会員登録</MenuItem>
+          <Link href="/search">
+            <a>
+              <MenuItem>ドッグウォーカーを探す</MenuItem>
+            </a>
+          </Link>
+          <Link href="/">
+            <a>
+              <MenuItem>ドッグウォーカーになる</MenuItem>
+            </a>
+          </Link>
+          <Link href="/">
+            <a>
+              <MenuItem>サービスについて</MenuItem>
+            </a>
+          </Link>
+          <Link href="/">
+            <a>
+              <MenuItem>会員登録</MenuItem>
+            </a>
+          </Link>
         </Menu>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
           <Link href="/">

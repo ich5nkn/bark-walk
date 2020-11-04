@@ -1,22 +1,11 @@
 import React from 'react';
-import Head from 'next/head';
 import Navbar from './Navbar';
-
-// TODO: Navbarが表示されていないので修正する
 
 const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return (
-    <div>
-      <Head>
-        <title>Bark Walk</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <>
       <Navbar />
-      {children}
+      <div style={{ marginTop: 56 }}>{children}</div>
       <style jsx global>
         {`
           html,
@@ -38,7 +27,7 @@ const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
           }
         `}
       </style>
-    </div>
+    </>
   );
 };
 
