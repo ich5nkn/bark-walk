@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DefaultButton snapShot 1`] = `
+<button
+  className="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary"
+  data-testid="defaultButton"
+  disabled={false}
+  onBlur={[Function]}
+  onClick={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Class {
+            "_dispatchInstances": null,
+            "_dispatchListeners": null,
+            "_targetInst": null,
+            "altKey": null,
+            "bubbles": null,
+            "button": null,
+            "buttons": null,
+            "cancelable": null,
+            "clientX": null,
+            "clientY": null,
+            "ctrlKey": null,
+            "currentTarget": [Function],
+            "defaultPrevented": null,
+            "detail": null,
+            "dispatchConfig": null,
+            "eventPhase": null,
+            "getModifierState": [Function],
+            "isDefaultPrevented": [Function],
+            "isPropagationStopped": [Function],
+            "isTrusted": null,
+            "metaKey": null,
+            "movementX": [Function],
+            "movementY": [Function],
+            "nativeEvent": null,
+            "pageX": null,
+            "pageY": null,
+            "relatedTarget": [Function],
+            "screenX": null,
+            "screenY": null,
+            "shiftKey": null,
+            "target": null,
+            "timeStamp": [Function],
+            "type": null,
+            "view": null,
+          },
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  onDragLeave={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchEnd={[Function]}
+  onTouchMove={[Function]}
+  onTouchStart={[Function]}
+  style={
+    Object {
+      "color": "#FFF",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className="MuiButton-label"
+  >
+    ほげほげ
+  </span>
+</button>
+`;
