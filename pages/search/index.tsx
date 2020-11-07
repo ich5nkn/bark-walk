@@ -18,6 +18,15 @@ const Search: React.FC = () => {
   //   {place:'福岡県',name:'斎藤'},
   //   {place:'福岡県',name:'田島'},
   // ]
+
+  const json = [
+    {place:'東京都',date:new Date('2020-10-10'),name:'山田',star:3.5,ownerId:"LSDF10SJHG0A2DDF"},
+    {place:'東京都',date:new Date('2020-10-10'),name:'山田',star:3.5,ownerId:"LSDF10SJHG0A2DDF"},
+    {place:'東京都',date:new Date('2020-10-10'),name:'山田',star:3.5,ownerId:"LSDF10SJHG0A2DDF"},
+    {place:'東京都',date:new Date('2020-10-10'),name:'山田',star:3.5,ownerId:"LSDF10SJHG0A2DDF"},
+    {place:'東京都',date:new Date('2020-10-10'),name:'山田',star:3.5,ownerId:"LSDF10SJHG0A2DDF"},
+    {place:'東京都',date:new Date('2020-10-10'),name:'山田',star:3.5,ownerId:"LSDF10SJHG0A2DDF"},
+  ]
   
   useEffect(() => {
     // firabaseからデータを取得
