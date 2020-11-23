@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function Login() {
   // Our custom hook to get context values
   const { loadingUser, user } = useUser();
@@ -68,9 +67,7 @@ export default function Login() {
 
   return (
     <>
-      <TextField
-        variant='outlined'
-       />
+      <TextField variant="outlined" />
     </>
   );
 }
