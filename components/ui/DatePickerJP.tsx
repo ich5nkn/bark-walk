@@ -1,0 +1,62 @@
+import React from 'react';
+import { DatePicker } from '@material-ui/pickers';
+import ja from 'date-fns/locale/ja';
+import { format } from 'date-fns';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+import { ToolbarComponentProps } from '@material-ui/pickers/Picker/Picker';
+import ToolbarButton from '@material-ui/pickers/_shared/ToolbarButton';
+import PickerToolbar from '@material-ui/pickers/_shared/PickerToolbar';
+import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
+
+interface props {
+  value: Date | null;
+  onChange: (date: MaterialUiPickersDate) => void;
+  label?: string;
+  margin?: string | number;
+  height?: 'normal' | 'dense' | 'none';
+  fullWidth?: boolean;
+  future?: boolean;
+}
+
+const DatePickerJP = (props: props): JSX.Element => {
+  const labelFunc = (val: any) =>
+    val === null ? '' : format(new Date(val), 'yyyy年MM月dd日');
+
+  return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ja}>
+      <DatePicker
+        inputVariant="outlined"
+        margin={props.height ? props.height : 'dense'}
+        label={props.label || ''}
+        style={{ width: 150, margin: props.margin || 0 }}
+        value={props.value}
+        onChange={props.onChange}
+        clearLabel="クリア"
+        okLabel="決定"
+        cancelLabel="キャンセル"
+        labelFunc={labelFunc}
+        ToolbarComponent={ToolbarComponent}
+        disableFuture={!props.future}
+        autoOk
+        clearable
+        fullWidth={props.fullWidth}
+      />
+    </MuiPickersUtilsProvider>
+  );
+};
+
+const ToolbarComponent = (props: ToolbarComponentProps): JSX.Element => {
+  return (
+    <PickerToolbar isLandscape={false} style={{ height: 50 }}>
+      <ToolbarButton
+        variant={'h6'}
+        onClick={() => props.setOpenView('year')}
+        selected={props.openView === 'year'}
+        label={'年選択（' + props.date?.getFullYear() + '年）'}
+      />
+    </PickerToolbar>
+  );
+};
+
+export default DatePickerJP;
