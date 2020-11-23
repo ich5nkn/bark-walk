@@ -7,6 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Container from '@material-ui/core/Container';
 
 import { useUser } from '../../utils/auth/useUser';
 import { useRouter } from 'next/router';
@@ -28,59 +29,61 @@ const Navbar: React.FC = () => {
   const router = useRouter();
 
   return (
-    <AppBar position="fixed" style={{ width: '100%', flexGrow: 1 }}>
-      <Toolbar>
-        <IconButton
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          onClick={handleClick}
-        >
-          <MenuIcon />
-        </IconButton>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleClose}
-        >
-          <Link href="/search">
-            <a>
-              <MenuItem>ドッグウォーカーを探す</MenuItem>
-            </a>
-          </Link>
-          <Link href="/">
-            <a>
-              <MenuItem>ドッグウォーカーになる</MenuItem>
-            </a>
-          </Link>
-          <Link href="/">
-            <a>
-              <MenuItem>サービスについて</MenuItem>
-            </a>
-          </Link>
-          <Link href="/">
-            <a>
-              <MenuItem>会員登録</MenuItem>
-            </a>
-          </Link>
-        </Menu>
-        <Typography variant="h6" style={{ flexGrow: 1 }}>
-          <Link href="/">
-            <a>Bark Walk</a>
-          </Link>
-        </Typography>
-        {user ? (
-          <Button color="inherit" onClick={logout}>
-            Logout
-          </Button>
-        ) : (
-          <Button color="inherit" onClick={() => router.push('/auth')}>
-            Login
-          </Button>
-        )}
-      </Toolbar>
+    <AppBar position="fixed">
+      <Container maxWidth="md">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={handleClick}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <Link href="/search">
+              <a>
+                <MenuItem>ドッグウォーカーを探す</MenuItem>
+              </a>
+            </Link>
+            <Link href="/">
+              <a>
+                <MenuItem>ドッグウォーカーになる</MenuItem>
+              </a>
+            </Link>
+            <Link href="/">
+              <a>
+                <MenuItem>サービスについて</MenuItem>
+              </a>
+            </Link>
+            <Link href="/">
+              <a>
+                <MenuItem>会員登録</MenuItem>
+              </a>
+            </Link>
+          </Menu>
+          <Typography variant="h6" style={{ flexGrow: 1 }}>
+            <Link href="/">
+              <a>Bark Walk</a>
+            </Link>
+          </Typography>
+          {user ? (
+            <Button color="inherit" onClick={logout}>
+              Logout
+            </Button>
+          ) : (
+            <Button color="inherit" onClick={() => router.push('/auth')}>
+              Login
+            </Button>
+          )}
+        </Toolbar>
+      </Container>
     </AppBar>
   );
 };

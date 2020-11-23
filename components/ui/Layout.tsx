@@ -1,32 +1,16 @@
 import React from 'react';
 import Navbar from './Navbar';
+import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core';
 
 const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
+  // const useStyles = makeStyles(() => {});
   return (
     <>
-      <Navbar />
-      <div style={{ marginTop: 56 }}>{children}</div>
-      <style jsx global>
-        {`
-          html,
-          body {
-            padding: 0;
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-              Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-              sans-serif;
-          }
-
-          * {
-            box-sizing: border-box;
-          }
-
-          a {
-            color: inherit;
-            text-decoration: none;
-          }
-        `}
-      </style>
+      <Container maxWidth="md">
+        <Navbar />
+        <div style={{ marginTop: 56 }}>{children}</div>
+      </Container>
     </>
   );
 };
