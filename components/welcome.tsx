@@ -47,7 +47,7 @@ const useStyles = makeStyles(() => ({
 
 const ReviewCard = (title: string, text: string, image?: string) => {
   return (
-    <div style={{ display: 'inline-block', padding: 10 }}>
+    <div key={title} style={{ display: 'inline-block', padding: 10 }}>
       <Card style={{ width: 260, backgroundColor: '#DDD' }}>
         <div
           style={
