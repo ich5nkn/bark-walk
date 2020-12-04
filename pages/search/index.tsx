@@ -9,7 +9,7 @@ import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 const Search: React.FC = () => {
   const [place, setPlace] = useState('東京都');
   const [list, setList] = useState([]);
-  const [selectedDate, handleDateChange] = useState<MaterialUiPickersDate>(null);
+  const [selectedDate, handleDateChange] = useState<MaterialUiPickersDate>(new Date());
 
   // const data = [
   //   {place:'東京都',name:'山田'},
