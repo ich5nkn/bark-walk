@@ -47,26 +47,12 @@ const Navbar: React.FC = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <Link href="/search">
-              <a>
-                <MenuItem>ドッグウォーカーを探す</MenuItem>
-              </a>
-            </Link>
-            <Link href="/">
-              <a>
-                <MenuItem>ドッグウォーカーになる</MenuItem>
-              </a>
-            </Link>
-            <Link href="/">
-              <a>
-                <MenuItem>サービスについて</MenuItem>
-              </a>
-            </Link>
-            <Link href="/">
-              <a>
-                <MenuItem>会員登録</MenuItem>
-              </a>
-            </Link>
+            <MenuItem onClick={() => router.push('/search')}>
+              ドッグウォーカーを探す
+            </MenuItem>
+            <MenuItem>ドッグウォーカーになる</MenuItem>
+            <MenuItem>サービスについて</MenuItem>
+            <MenuItem>会員登録</MenuItem>
           </Menu>
           <Typography variant="h6" style={{ flexGrow: 1 }}>
             <Link href="/">
