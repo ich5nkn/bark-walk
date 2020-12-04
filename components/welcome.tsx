@@ -6,7 +6,6 @@ import EventNoteIcon from '@material-ui/icons/EventNote';
 import DefaultButton from './ui/Button/DefaultButton';
 import { Typography, Grid, Card } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import Layout from './ui/Layout';
 
 const useStyles = makeStyles(() => ({
   block1: {
@@ -47,7 +46,7 @@ const useStyles = makeStyles(() => ({
 
 const ReviewCard = (title: string, text: string, image?: string) => {
   return (
-    <div style={{ display: 'inline-block', padding: 10 }}>
+    <div key={title} style={{ display: 'inline-block', padding: 10 }}>
       <Card style={{ width: 260, backgroundColor: '#DDD' }}>
         <div
           style={
@@ -94,7 +93,7 @@ const Welcome: React.FC = () => {
   const classes = useStyles();
   const router = useRouter();
   return (
-    <Layout>
+    <>
       <div className={classes.block1}>
         <Typography variant="h4" component="h1" className={classes.block1Title}>
           ドッグウォーカーがあなたの愛犬の散歩をします
@@ -228,7 +227,7 @@ const Welcome: React.FC = () => {
           会員登録する
         </DefaultButton>
       </div>
-    </Layout>
+    </>
   );
 };
 

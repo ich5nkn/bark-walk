@@ -9,14 +9,16 @@ const Home: React.FC = () => {
     return (
       // TODO:ダッシュボード作成
       <Layout>
-        <>
-          <div>{user.uid}</div>
-          <button onClick={logout}></button>
-        </>
+        <div>{user.uid}</div>
+        <button onClick={logout}></button>
       </Layout>
     );
   }
-  return <Welcome />;
+  return (
+    <Layout>
+      <Welcome />
+    </Layout>
+  );
 };
 
 export default Home;

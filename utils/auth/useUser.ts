@@ -37,6 +37,10 @@ const useUser = (): {
     // Firebase updates the id token every hour, this
     // makes sure the react state and the cookie are
     // both kept up to date
+
+    // 未ログイン状態でも見れるページのパスを以下に追加
+    const existPaths = ['/', '/search'];
+
     const cancelAuthListener = firebase.auth().onIdTokenChanged((user) => {
       if (user) {
         const userData = mapUserData(user);
@@ -48,12 +52,14 @@ const useUser = (): {
       }
     });
 
-    const userFromCookie = getUserFromCookie();
-    if (!userFromCookie) {
-      router.push('/');
-      return;
+    if (existPaths.indexOf(router.pathname) == -1) {
+      const userFromCookie = getUserFromCookie();
+      if (!userFromCookie) {
+        router.push('/');
+        return;
+      }
+      setUser(userFromCookie);
     }
-    setUser(userFromCookie);
 
     return () => {
       cancelAuthListener();
