@@ -9,9 +9,7 @@ import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 const Search: React.FC = () => {
   const [place, setPlace] = useState('東京都');
   const [list, setList] = useState([]);
-  const [selectedDate, handleDateChange] = useState<MaterialUiPickersDate>(
-    new Date()
-  );
+  const [selectedDate, handleDateChange] = useState<MaterialUiPickersDate>(null);
 
   // const data = [
   //   {place:'東京都',name:'山田'},
@@ -25,63 +23,55 @@ const Search: React.FC = () => {
   //   {place:'福岡県',name:'田島'},
   // ]
 
-  const json = [
-    {
-      place: '東京都',
-      date: new Date('2020-10-10'),
-      name: '山田',
-      star: 3.5,
-      ownerId: 'LSDF10SJHG0A2DDF',
-    },
-    {
-      place: '東京都',
-      date: new Date('2020-10-10'),
-      name: '山田',
-      star: 3.5,
-      ownerId: 'LSDF10SJHG0A2DDF',
-    },
-    {
-      place: '東京都',
-      date: new Date('2020-10-10'),
-      name: '山田',
-      star: 3.5,
-      ownerId: 'LSDF10SJHG0A2DDF',
-    },
-    {
-      place: '東京都',
-      date: new Date('2020-10-10'),
-      name: '山田',
-      star: 3.5,
-      ownerId: 'LSDF10SJHG0A2DDF',
-    },
-    {
-      place: '東京都',
-      date: new Date('2020-10-10'),
-      name: '山田',
-      star: 3.5,
-      ownerId: 'LSDF10SJHG0A2DDF',
-    },
-    {
-      place: '東京都',
-      date: new Date('2020-10-10'),
-      name: '山田',
-      star: 3.5,
-      ownerId: 'LSDF10SJHG0A2DDF',
-    },
-  ];
+  // const json = [
+  //   {
+  //     place: '東京都',
+  //     date: new Date('2020-10-10'),
+  //     name: '山田',
+  //     star: 3.5,
+  //     ownerId: 'LSDF10SJHG0A2DDF',
+  //   },
+  //   {
+  //     place: '東京都',
+  //     date: new Date('2020-10-10'),
+  //     name: '山田',
+  //     star: 3.5,
+  //     ownerId: 'LSDF10SJHG0A2DDF',
+  //   },
+  //   {
+  //     place: '東京都',
+  //     date: new Date('2020-10-10'),
+  //     name: '山田',
+  //     star: 3.5,
+  //     ownerId: 'LSDF10SJHG0A2DDF',
+  //   },
+  //   {
+  //     place: '東京都',
+  //     date: new Date('2020-10-10'),
+  //     name: '山田',
+  //     star: 3.5,
+  //     ownerId: 'LSDF10SJHG0A2DDF',
+  //   },
+  //   {
+  //     place: '東京都',
+  //     date: new Date('2020-10-10'),
+  //     name: '山田',
+  //     star: 3.5,
+  //     ownerId: 'LSDF10SJHG0A2DDF',
+  //   },
+  //   {
+  //     place: '東京都',
+  //     date: new Date('2020-10-10'),
+  //     name: '山田',
+  //     star: 3.5,
+  //     ownerId: 'LSDF10SJHG0A2DDF',
+  //   },
+  // ];
 
   useEffect(() => {
     // firabaseからデータを取得
     const fetchedData = async () => {
       const db = firebase.firestore();
-
-      // document取得
-      // const doc = await db.collection("users").doc(
-      //   "kzibAOH4Vc3goeS386BA"
-      //   ).get();
-      // console.log(doc.data());
-      // console.log("Fetch Clicked");
-
       const res = await db.collection('walkers').get();
       const data = [];
       res.forEach((doc) => {
