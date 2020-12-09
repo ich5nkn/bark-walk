@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
 import * as firebase from 'firebase';
-import { Select } from '@material-ui/core';
+import { Grid,Select,FormControl,InputLabel,Typography,Paper } from '@material-ui/core';
 import Layout from '../../components/ui/Layout';
 import DatePickerJP from '../../components/ui/DatePickerJP';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
@@ -92,22 +92,51 @@ const Search: React.FC = () => {
 
   return (
     <Layout>
-      <DatePickerJP
-        label="日付選択"
-        value={selectedDate}
-        onChange={handleDateChange}
-      />
-      <Select
-        native
-        variant="outlined"
-        value={place}
-        onChange={(e) => setPlace(e.target.value as string)}
-      >
-        <option value={'東京都'}>東京都</option>
-        <option value={'大阪府'}>大阪府</option>
-        <option value={'福岡県'}>福岡県</option>
-      </Select>
+      <Grid container>
+        <Grid item xs={6} style={{padding:'20px 10px'}}>
+        <DatePickerJP
+          label="日付選択"
+          value={selectedDate}
+          onChange={handleDateChange}
+          fullWidth
+          future
+        />
+        </Grid>
+        <Grid item xs={6}style={{padding:'20px 10px'}}>
+          <FormControl
+            variant="outlined"
+            fullWidth
+          >
+            <InputLabel>都道府県</InputLabel>
+            <Select
+              native
+              value={place}
+              onChange={(e) => setPlace(e.target.value as string)}
+              label="都道府県"
+            >
+              <option value={'東京都'}>東京都</option>
+              <option value={'大阪府'}>大阪府</option>
+              <option value={'福岡県'}>福岡県</option>
+            </Select>
+          </FormControl>
+        </Grid>
+        <div style={{backgroundColor:'#DDD',width:'100%',padding:10}}>
+          <Typography
+            variant="subtitle1"
+            component="h3"
+          >
+            検索結果一覧
+          </Typography>
+        </div>
+        <Grid container>
+          <Grid item xs={12} md={6}>
+            <Paper style={{margin:'10px auto', width:'95%', backgroundColor:'#F3F1F3'}}>
+              aaa
+            </Paper>
+          </Grid>
+        </Grid>
       <p>{list}</p>
+      </Grid>
     </Layout>
   );
 };
