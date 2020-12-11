@@ -1,8 +1,7 @@
 import React from 'react';
-import { DatePicker } from '@material-ui/pickers';
+import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import ja from 'date-fns/locale/ja';
 import { format } from 'date-fns';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import { ToolbarComponentProps } from '@material-ui/pickers/Picker/Picker';
 import ToolbarButton from '@material-ui/pickers/_shared/ToolbarButton';
@@ -13,8 +12,6 @@ interface props {
   value: Date | null;
   onChange: (date: MaterialUiPickersDate) => void;
   label?: string;
-  margin?: string | number;
-  height?: 'normal' | 'dense' | 'none';
   fullWidth?: boolean;
   future?: boolean;
 }
@@ -27,9 +24,7 @@ const DatePickerJP = (props: props): JSX.Element => {
     <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ja}>
       <DatePicker
         inputVariant="outlined"
-        margin={props.height ? props.height : 'dense'}
         label={props.label || ''}
-        style={{ width: 150, margin: props.margin || 0 }}
         value={props.value}
         onChange={props.onChange}
         clearLabel="クリア"
