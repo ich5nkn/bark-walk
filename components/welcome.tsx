@@ -175,7 +175,7 @@ const Welcome: React.FC = () => {
             </Typography>
           </Grid>
         </Grid>
-        <DefaultButton onClick={() => router.push('/search/')}>
+        <DefaultButton onClick={() => router.push('/search')}>
           ご近所のドッグウォーカーを検索する
         </DefaultButton>
       </div>
