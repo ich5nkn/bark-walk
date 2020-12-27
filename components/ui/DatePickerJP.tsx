@@ -54,4 +54,30 @@ const ToolbarComponent = (props: ToolbarComponentProps): JSX.Element => {
   );
 };
 
+export const StaticDatePickerJP = (props: props): JSX.Element => {
+  const labelFunc = (val: any) =>
+    val === null ? '' : format(new Date(val), 'yyyy年MM月dd日');
+
+  return (
+    <MuiPickersUtilsProvider utils={DateFnsUtils} locale={ja}>
+      <DatePicker
+        views={['date']}
+        variant="static"
+        inputVariant="outlined"
+        label={props.label || ''}
+        value={props.value}
+        onChange={props.onChange}
+        clearLabel="クリア"
+        okLabel="決定"
+        cancelLabel="キャンセル"
+        labelFunc={labelFunc}
+        ToolbarComponent={ToolbarComponent}
+        autoOk
+        clearable
+        fullWidth={props.fullWidth}
+      />
+    </MuiPickersUtilsProvider>
+  );
+};
+
 export default DatePickerJP;

@@ -9,7 +9,7 @@ const Layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
     <>
       <Container maxWidth="md">
         <Navbar />
-        <div style={{ marginTop: 56 }}>{children}</div>
+        <div style={{ marginTop: 80 }}>{children}</div>
       </Container>
     </>
   );
