@@ -6,8 +6,12 @@ import Layout from '../../components/ui/Layout';
 import DatePickerJP from '../../components/ui/DatePickerJP';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 // import {storage} from '../../firebase/clientApp';
+import LoginRequestModal from '../../components/ui/LoginRequestModal';
+import { useUser } from '../../utils/auth/useUser';
+import { useRouter } from 'next/router';
 
 interface walkerCardProp {
+  id:string,
   name:string,
   avaterPath?:string,
   headerPath?:string,
@@ -16,83 +20,25 @@ interface walkerCardProp {
 }
 
 const Search: React.FC = () => {
+  const { user } = useUser();
+  const router = useRouter();
   const [place, setPlace] = useState('東京都');
   const [selectedDate, handleDateChange] = useState<MaterialUiPickersDate>(new Date());
   const [loading,setLoading] = useState<boolean>(true);
   const [list, setList] = useState<walkerCardProp[]>([]);
-
-  // const data = [
-  //   {place:'東京都',name:'山田'},
-  //   {place:'東京都',name:'田中'},
-  //   {place:'東京都',name:'森山'},
-  //   {place:'大阪府',name:'佐藤'},
-  //   {place:'大阪府',name:'広瀬'},
-  //   {place:'大阪府',name:'南'},
-  //   {place:'福岡県',name:'本田'},
-  //   {place:'福岡県',name:'斎藤'},
-  //   {place:'福岡県',name:'田島'},
-  // ]
-
-  // const json = [
-  //   {
-  //     place: '東京都',
-  //     date: new Date('2020-10-10'),
-  //     name: '山田',
-  //     star: 3.5,
-  //     ownerId: 'LSDF10SJHG0A2DDF',
-  //   },
-  //   {
-  //     place: '東京都',
-  //     date: new Date('2020-10-10'),
-  //     name: '山田',
-  //     star: 3.5,
-  //     ownerId: 'LSDF10SJHG0A2DDF',
-  //   },
-  //   {
-  //     place: '東京都',
-  //     date: new Date('2020-10-10'),
-  //     name: '山田',
-  //     star: 3.5,
-  //     ownerId: 'LSDF10SJHG0A2DDF',
-  //   },
-  //   {
-  //     place: '東京都',
-  //     date: new Date('2020-10-10'),
-  //     name: '山田',
-  //     star: 3.5,
-  //     ownerId: 'LSDF10SJHG0A2DDF',
-  //   },
-  //   {
-  //     place: '東京都',
-  //     date: new Date('2020-10-10'),
-  //     name: '山田',
-  //     star: 3.5,
-  //     ownerId: 'LSDF10SJHG0A2DDF',
-  //   },
-  //   {
-  //     place: '東京都',
-  //     date: new Date('2020-10-10'),
-  //     name: '山田',
-  //     star: 3.5,
-  //     ownerId: 'LSDF10SJHG0A2DDF',
-  //   },
-  // ];
+  const [LoginRequestOpen , setLoginRequestOpen] = useState<boolean>(false)
 
   useEffect(() => {
     // firabaseからデータを取得
     const fetchedData = async () => {
       setLoading(true)
       const db = firebase.firestore();
-      const res = await db.collection('walkers').get();
+      const res = await db.collection('walkers').where("place","==",place).get();
       const data = [];
       res.forEach((doc) => {
-        data.push(doc.data());
+        data.push({id:doc.id,...doc.data()});
       });
-      // placeに合致するデータのみ取得
-      const filterdData = data.filter((item) => {
-        return item.place === place;
-      });
-      setList(filterdData);
+      setList(data);
     };
     fetchedData();
   }, [place,selectedDate]);
@@ -110,10 +56,18 @@ const Search: React.FC = () => {
   //   }
   // };
 
+  const goDetail = (id:string):void=>{
+    if(user){
+      router.push('/detail/'+id)
+    }else{
+      setLoginRequestOpen(true)
+    }
+  }
+
   const walkerCard = (walker:walkerCardProp):JSX.Element => {
     const defaultHeader = 'url(https://firebasestorage.googleapis.com/v0/b/bark-wark.appspot.com/o/mitte102520950_TP_V.jpg?alt=media&token=3b564cf2-e952-412b-9d1f-bf1bb6d6856b)'
     return (
-      <Paper style={{margin:'10px auto', width:'100%', backgroundColor:'#F3F1F3'}}>
+      <Paper style={{margin:'10px auto', width:'100%', backgroundColor:'#F3F1F3'}} onClick={()=>goDetail(walker.id)}>
         <Grid container>
           <Grid item style={{height:125,width:'100%', backgroundImage:walker.headerPath ? ('url(' + walker.headerPath + ')') : defaultHeader,backgroundSize: 'cover'}}>
             <Avatar style={{width:75,height:75,margin:25,marginLeft:10}} src={walker.avaterPath ? walker.avaterPath : ''}/>
@@ -182,6 +136,10 @@ const Search: React.FC = () => {
           }
         </Grid>
       </Grid>
+      <LoginRequestModal
+        open={LoginRequestOpen}
+        onClose={()=>{setLoginRequestOpen(false)}}
+      />
     </Layout>
   );
 };
