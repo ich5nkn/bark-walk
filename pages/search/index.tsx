@@ -35,7 +35,10 @@ const Search: React.FC = () => {
       const db = firebase.firestore();
       const res = await db.collection('walkers').where("place","==",place).get();
       const data = [];
+      console.log('res : ',res)
+      console.log('res[0] : ',res[0])
       res.forEach((doc) => {
+        console.log('doc : ',doc)
         data.push({id:doc.id,...doc.data()});
       });
       setList(data);
@@ -44,7 +47,6 @@ const Search: React.FC = () => {
   }, [place,selectedDate]);
 
   useEffect(()=>{
-    console.log(list)
     setLoading(false);
   },[list])
 

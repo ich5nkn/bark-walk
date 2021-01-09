@@ -2,6 +2,7 @@ import React from 'react';
 import { useUser } from '../utils/auth/useUser';
 import Welcome from '../components/welcome';
 import Layout from '../components/ui/Layout';
+import DashBoard from '../components/ui/DashBoard';
 
 const Home: React.FC = () => {
   const { user, logout } = useUser();
@@ -9,8 +10,7 @@ const Home: React.FC = () => {
     return (
       // TODO:ダッシュボード作成
       <Layout>
-        <div>{user.uid}</div>
-        <button onClick={logout}></button>
+        <DashBoard user={user} logout={logout} />
       </Layout>
     );
   }
