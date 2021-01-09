@@ -4,9 +4,7 @@ import FirebaseAuth from '../components/FirebaseAuth';
 const Auth: React.FC = () => {
   return (
     <div>
-      <div>
-        <FirebaseAuth />
-      </div>
+      <FirebaseAuth />
     </div>
   );
 };
