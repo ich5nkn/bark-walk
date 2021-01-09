@@ -2,27 +2,29 @@
 /* globals window */
 import React from 'react';
 import { useEffect, useState } from 'react';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/app';
-import 'firebase/auth';
-import initFirebase from '../utils/auth/initFirebase';
 import { setUserCookie } from '../utils/auth/userCookies';
 import { mapUserData } from '../utils/auth/mapUserData';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+
+// TODO: 下記の設定ファイルを読み進めて設定を進める
+// https://github.com/firebase/firebaseui-web#configure-oauth-providers
 
 // Init the Firebase app.
-initFirebase();
+// TODO: どのような処理か確認する
+const auth = firebase.auth();
 
-const firebaseAuthConfig: any = {
+const uiConfig: any = {
   signInFlow: 'popup',
   // Auth providers
   // https://github.com/firebase/firebaseui-web#configure-oauth-providers
-  signInOptions: [
-    {
-      provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-      requireDisplayName: false,
-    },
-  ],
   signInSuccessUrl: '/',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+  ],
   credentialHelper: 'none',
   callbacks: {
     signInSuccessWithAuthResult: async ({ user } /*, redirectUrl*/) => {
@@ -44,10 +46,8 @@ const FirebaseAuth: React.FC = () => {
   return (
     <div>
       {renderAuth ? (
-        <StyledFirebaseAuth
-          uiConfig={firebaseAuthConfig}
-          firebaseAuth={firebase.auth()}
-        />
+        // コンポーネントをWrapして整える
+        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       ) : null}
     </div>
   );
