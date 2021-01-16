@@ -2,16 +2,18 @@
 /* globals window */
 import React from 'react';
 import { useEffect, useState } from 'react';
-import firebase from 'firebase/app';
+import firebase from '../firebase/clientApp';
 import { setUserCookie } from '../utils/auth/userCookies';
 import { mapUserData } from '../utils/auth/mapUserData';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
-// TODO: 下記の設定ファイルを読み進めて設定を進める
-// https://github.com/firebase/firebaseui-web#configure-oauth-providers
+// FirebaseUI or Firebase Authentication SDKの選択肢がある
+// 完全なドロップイン認証ソリューションとして、FirebaseUI を採用
+// Firebase Authentication SDK は複数のログイン方法を手動でアプリに統合する際に必要だが今回は採用していない
+// FirebaseUI のReact用のラッパーであるfirebaseui-web-reactに関するドキュメント
+// https://github.com/firebase/firebaseui-web-react
 
-// Init the Firebase app.
-// TODO: どのような処理か確認する
+// firebaseui-web-reactに認証情報を渡すためにFirebase Auth instanceを生成
 const auth = firebase.auth();
 
 const uiConfig: any = {
@@ -25,6 +27,11 @@ const uiConfig: any = {
     // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ],
+  // Terms of service url.
+  tosUrl: '',
+  // Privacy policy url.
+  privacyPolicyUrl: '',
+  // TODO: 確認する
   credentialHelper: 'none',
   callbacks: {
     signInSuccessWithAuthResult: async ({ user } /*, redirectUrl*/) => {
