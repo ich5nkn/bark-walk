@@ -2,7 +2,7 @@ import cookies from 'js-cookie';
 import { UserData } from './userData';
 
 // cookieから認証情報を取得
-export const getUserFromCookie = (): any => {
+export const getUserFromCookie = (): UserData => {
   const cookie = cookies.get('auth');
   if (!cookie) {
     return;
