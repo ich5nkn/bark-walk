@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import firebase from 'firebase/app';
+import firebase from '../../firebase/clientApp';
 import 'firebase/auth';
-import initFirebase from './initFirebase';
 import {
   removeUserCookie,
   setUserCookie,
@@ -10,8 +9,6 @@ import {
 } from './userCookies';
 import { mapUserData } from './mapUserData';
 import { UserData } from './userData';
-
-initFirebase();
 
 const useUser = (): {
   user: UserData | undefined;
