@@ -1,5 +1,3 @@
-// eslint-disable-next-line no-redeclare
-/* globals window */
 import React from 'react';
 import { useEffect, useState } from 'react';
 import firebase from '../firebase/clientApp';
