@@ -3,23 +3,24 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import firebase from '../firebase/clientApp';
-import { setUserCookie } from '../utils/auth/userCookies';
-import { mapUserData } from '../utils/auth/mapUserData';
+import * as firebaseui from 'firebaseui';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { mapUserData } from '../utils/auth/mapUserData';
+import { setUserCookie } from '../utils/auth/userCookies';
 
 // FirebaseUI or Firebase Authentication SDKの選択肢がある
 // 完全なドロップイン認証ソリューションとして、FirebaseUI を採用
-// Firebase Authentication SDK は複数のログイン方法を手動でアプリに統合する際に必要だが今回は採用していない
 // FirebaseUI のReact用のラッパーであるfirebaseui-web-reactに関するドキュメント
 // https://github.com/firebase/firebaseui-web-react
 
 // firebaseui-web-reactに認証情報を渡すためにFirebase Auth instanceを生成
 const auth = firebase.auth();
 
+// 設定解説：https://github.com/firebase/firebaseui-web/#configuration
 const uiConfig: any = {
+  // Popup signin flow rather than redirect flow.
   signInFlow: 'popup',
-  // Auth providers
-  // https://github.com/firebase/firebaseui-web#configure-oauth-providers
+  // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
   signInSuccessUrl: '/',
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
@@ -31,11 +32,16 @@ const uiConfig: any = {
   tosUrl: '',
   // Privacy policy url.
   privacyPolicyUrl: '',
-  // TODO: 確認する
-  credentialHelper: 'none',
+  // 認証情報の保存
+  credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
   callbacks: {
-    signInSuccessWithAuthResult: async ({ user } /*, redirectUrl*/) => {
-      const userData = mapUserData(user);
+    // The signInSuccessWithAuthResult callback is invoked when user signs in successfully.
+    // https://github.com/firebase/firebaseui-web#available-callbacks
+    // redirectUrlはsignInSuccessUrlを上書きしたい場合のみ設定
+    signInSuccessWithAuthResult: (
+      authResult: firebase.auth.UserCredential /*, redirectUrl */
+    ) => {
+      const userData = mapUserData(authResult.user);
       setUserCookie(userData);
     },
   },
