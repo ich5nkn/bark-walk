@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import firebase from '../../firebase/clientApp';
-import 'firebase/auth';
 import {
-  removeUserCookie,
-  setUserCookie,
   getUserFromCookie,
+  setUserCookie,
+  removeUserCookie,
 } from './userCookies';
 import { mapUserData } from './mapUserData';
 import { UserData } from './userData';
 
+// ユーザー情報取得, ログアウト処理
 const useUser = (): {
   user: UserData | undefined;
   logout: () => Promise<void>;
