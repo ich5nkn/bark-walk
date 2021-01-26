@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import firebase from '../firebase/clientApp';
-import * as firebaseui from 'firebaseui';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { mapUserData } from '../utils/auth/mapUserData';
 import { setUserCookie } from '../utils/auth/userCookies';
@@ -31,7 +30,7 @@ const uiConfig: any = {
   // Privacy policy url.
   privacyPolicyUrl: '',
   // 認証情報の保存
-  credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
+  credentialHelper: 'none',
   callbacks: {
     // The signInSuccessWithAuthResult callback is invoked when user signs in successfully.
     // https://github.com/firebase/firebaseui-web#available-callbacks
