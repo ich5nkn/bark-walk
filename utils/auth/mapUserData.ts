@@ -1,11 +1,13 @@
+// firebase.User情報を取得し、必要な値のみオブジェクトに格納して返す
+
 import { UserData } from './userData';
 
-// TODO: firebase.Userの型を確認する
-export const mapUserData = (user: any): UserData => {
-  const { uid, email, token } = user;
+// TODO: firebase.Userの型にはtokenが存在しないので型を合成する必要があるかも
+export const mapUserData = (user: firebase.User): UserData => {
+  const { uid, email, displayName } = user;
   return {
     uid,
     email,
-    token,
+    displayName,
   };
 };

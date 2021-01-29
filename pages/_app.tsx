@@ -5,6 +5,7 @@ import { ThemeProvider } from '@material-ui/core';
 import { AppProps } from 'next/app';
 import 'fontsource-roboto';
 import './../styles/global.css';
+import '../styles/firebaseui-styling.global.css';
 
 const App = ({ Component, pageProps }: AppProps): JSX.Element => {
   React.useEffect(() => {
