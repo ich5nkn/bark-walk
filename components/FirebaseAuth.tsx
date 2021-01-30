@@ -35,7 +35,8 @@ const uiConfig: any = {
     // The signInSuccessWithAuthResult callback is invoked when user signs in successfully.
     // https://github.com/firebase/firebaseui-web#available-callbacks
     // redirectUrlはsignInSuccessUrlを上書きしたい場合のみ設定
-    signInSuccessWithAuthResult: (
+    // asyncの使用はNext.js公式サンプル参照
+    signInSuccessWithAuthResult: async (
       authResult: firebase.auth.UserCredential /*, redirectUrl */
     ) => {
       const userData = mapUserData(authResult.user);
