@@ -10,7 +10,9 @@ const Home: React.FC = () => {
     return (
       // TODO:ダッシュボード作成
       <Layout>
-        <DashBoard user={user} logout={logout} />
+        <div>{user.uid}</div>
+        <p>Welcome {user.displayName} You are now signed-in!</p>
+        <button onClick={logout}>ログアウト</button>
       </Layout>
     );
   }

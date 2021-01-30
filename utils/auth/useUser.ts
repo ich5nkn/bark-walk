@@ -1,18 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import initFirebase from './initFirebase';
+import firebase from '../../firebase/clientApp';
 import {
-  removeUserCookie,
-  setUserCookie,
   getUserFromCookie,
+  setUserCookie,
+  removeUserCookie,
 } from './userCookies';
 import { mapUserData } from './mapUserData';
 import { UserData } from './userData';
 
-initFirebase();
-
+// ユーザー情報取得, ログアウト処理
 const useUser = (): {
   user: UserData | undefined;
   logout: () => Promise<void>;
@@ -26,7 +23,7 @@ const useUser = (): {
       .signOut()
       .then(() => {
         // Sign-out successful.
-        router.push('/auth');
+        router.push('/');
       })
       .catch((e) => {
         console.error(e);
@@ -38,9 +35,8 @@ const useUser = (): {
     // makes sure the react state and the cookie are
     // both kept up to date
 
-    // 未ログイン状態でも見れるページのパスを以下に追加
-    const existPaths = ['/', '/search'];
-
+    // Firebaseのid tokenが変更された際の処理
+    // cookieにuserDataを追加,削除
     const cancelAuthListener = firebase.auth().onIdTokenChanged((user) => {
       if (user) {
         const userData = mapUserData(user);
@@ -52,12 +48,17 @@ const useUser = (): {
       }
     });
 
-    if (existPaths.indexOf(router.pathname) == -1) {
-      const userFromCookie = getUserFromCookie();
+    // 未ログイン状態でも閲覧できるページのパスを以下に追加
+    const existPaths = ['/', '/search', '/auth'];
+    // 未ログイン状態で閲覧できるページ以外の場合、
+    if (existPaths.includes(router.pathname) === false) {
+      const userFromCookie: UserData = getUserFromCookie();
+      // クッキーにUserDataがない場合はルートページにリダイレクトする
       if (!userFromCookie) {
         router.push('/');
         return;
       }
+      // クッキーにUserDataがある場合はUserを更新
       setUser(userFromCookie);
     }
 
