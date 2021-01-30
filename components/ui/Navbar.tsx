@@ -9,7 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Container from '@material-ui/core/Container';
 
-import { useUser } from '../../utils/auth/useUser';
+import { useUser } from '../../context/userContext';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
