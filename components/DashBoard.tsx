@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { UserData } from '../utils/auth/userData';
+import { User } from '../model/user';
 import firebase from 'firebase/app';
 import Link from 'next/link';
 
 interface Props {
-  user: UserData;
+  user: User;
   logout: () => Promise<void>;
 }
 

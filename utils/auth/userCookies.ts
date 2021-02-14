@@ -1,8 +1,8 @@
 import cookies from 'js-cookie';
-import { UserData } from './userData';
+import { User } from '../../model/user';
 
 // cookieからユーザー情報を取得
-export const getUserFromCookie = (): UserData => {
+export const getUserFromCookie = (): User => {
   const cookie = cookies.get('auth');
   if (!cookie) {
     return;
@@ -11,7 +11,7 @@ export const getUserFromCookie = (): UserData => {
 };
 
 // cookieにユーザー情報を追加
-export const setUserCookie = (user: UserData): void => {
+export const setUserCookie = (user: User): void => {
   cookies.set('auth', user, {
     // firebase id tokens expire in one hour
     // set cookie expiry to match
