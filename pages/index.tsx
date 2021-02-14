@@ -1,8 +1,8 @@
 import React from 'react';
 import { useUser } from '../context/userContext';
-import Welcome from '../components/welcome';
-import Layout from '../components/ui/Layout';
-import DashBoard from '../components/ui/DashBoard';
+import Welcome from '../components/Welcome';
+import Layout from '../components/Layout';
+import DashBoard from '../components/DashBoard';
 
 const Home: React.FC = () => {
   const { user, logout } = useUser();

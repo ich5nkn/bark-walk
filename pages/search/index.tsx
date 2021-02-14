@@ -11,11 +11,11 @@ import {
   Avatar,
   Chip,
 } from '@material-ui/core';
-import Layout from '../../components/ui/Layout';
-import DatePickerJP from '../../components/ui/DatePickerJP';
+import Layout from '../../components/Layout';
+import DatePickerJP from '../../components/DatePickerJP';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 // import {storage} from '../../firebase/clientApp';
-import LoginRequestModal from '../../components/ui/LoginRequestModal';
+import LoginRequestModal from '../../components/LoginRequestModal';
 import { useUser } from '../../context/userContext';
 import { useRouter } from 'next/router';
 

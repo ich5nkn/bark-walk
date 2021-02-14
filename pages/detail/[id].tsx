@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Layout from '../../components/ui/Layout';
+import Layout from '../../components/Layout';
 import {
   Typography,
   Table,
@@ -11,7 +11,7 @@ import {
   Divider,
   Button,
 } from '@material-ui/core';
-import { StaticDatePickerJP } from '../../components/ui/DatePickerJP';
+import { StaticDatePickerJP } from '../../components/DatePickerJP';
 
 const Detail = (): JSX.Element => {
   const router = useRouter();

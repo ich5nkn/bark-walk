@@ -1,6 +1,6 @@
 import React from 'react';
 import UserProvider from '../context/userContext';
-import theme from '../components/theme';
+import theme from '../theme';
 import { ThemeProvider } from '@material-ui/core';
 import { AppProps } from 'next/app';
 import 'fontsource-roboto';
