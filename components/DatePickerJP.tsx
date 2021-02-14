@@ -8,7 +8,7 @@ import ToolbarButton from '@material-ui/pickers/_shared/ToolbarButton';
 import PickerToolbar from '@material-ui/pickers/_shared/PickerToolbar';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 
-interface props {
+interface Props {
   value: Date | null;
   onChange: (date: MaterialUiPickersDate) => void;
   label?: string;
@@ -16,7 +16,7 @@ interface props {
   future?: boolean;
 }
 
-const DatePickerJP = (props: props): JSX.Element => {
+const DatePickerJP = (props: Props): JSX.Element => {
   const labelFunc = (val: any) =>
     val === null ? '' : format(new Date(val), 'yyyy年MM月dd日');
 
