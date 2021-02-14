@@ -12,7 +12,7 @@ import { UserData } from '../utils/auth/userData';
 // TODO: ContextAPIに型を付与する
 const UserContext = createContext({});
 const UserContextComp = ({ children }: any): JSX.Element => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
   const router = useRouter();
 
