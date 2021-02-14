@@ -1,5 +1,5 @@
 import React from 'react';
-import { useUser } from '../utils/auth/useUser';
+import { useUser } from '../context/userContext';
 import Welcome from '../components/welcome';
 import Layout from '../components/ui/Layout';
 import DashBoard from '../components/ui/DashBoard';

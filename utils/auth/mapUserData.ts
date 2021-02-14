@@ -4,10 +4,11 @@ import { UserData } from './userData';
 
 // TODO: firebase.Userの型にはtokenが存在しないので型を合成する必要があるかも
 export const mapUserData = (user: firebase.User): UserData => {
-  const { uid, email, displayName } = user;
+  const { uid, email, displayName, photoURL } = user;
   return {
     uid,
     email,
     displayName,
+    photoURL,
   };
 };

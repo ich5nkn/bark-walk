@@ -1,7 +1,7 @@
 import cookies from 'js-cookie';
 import { UserData } from './userData';
 
-// cookieから認証情報を取得
+// cookieからユーザー情報を取得
 export const getUserFromCookie = (): UserData => {
   const cookie = cookies.get('auth');
   if (!cookie) {
@@ -10,7 +10,7 @@ export const getUserFromCookie = (): UserData => {
   return JSON.parse(cookie);
 };
 
-// cookieに認証情報を追加
+// cookieにユーザー情報を追加
 export const setUserCookie = (user: UserData): void => {
   cookies.set('auth', user, {
     // firebase id tokens expire in one hour
