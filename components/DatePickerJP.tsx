@@ -8,13 +8,13 @@ import ToolbarButton from '@material-ui/pickers/_shared/ToolbarButton';
 import PickerToolbar from '@material-ui/pickers/_shared/PickerToolbar';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 
-interface Props {
+type Props = {
   value: Date | null;
   onChange: (date: MaterialUiPickersDate) => void;
   label?: string;
   fullWidth?: boolean;
   future?: boolean;
-}
+};
 
 const DatePickerJP = (props: Props): JSX.Element => {
   const labelFunc = (val: any) =>
@@ -54,7 +54,7 @@ const ToolbarComponent = (props: ToolbarComponentProps): JSX.Element => {
   );
 };
 
-export const StaticDatePickerJP = (props: props): JSX.Element => {
+export const StaticDatePickerJP = (props: Props): JSX.Element => {
   const labelFunc = (val: any) =>
     val === null ? '' : format(new Date(val), 'yyyy年MM月dd日');
 
