@@ -16,6 +16,9 @@ import { StaticDatePickerJP } from '../../components/ui/DatePickerJP';
 const Detail = (): JSX.Element => {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
+
+  // Dynamic Routingでパスパラメータがundefinedになる対策
+  // https://qiita.com/hourglasshoro/items/f105e31149d103cf0597
   useEffect(() => {
     if (router.asPath !== router.route) {
       console.log(router.query.id);
