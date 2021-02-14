@@ -64,14 +64,6 @@ const Search: React.FC = () => {
     setLoading(false);
   }, [list]);
 
-  // const onChangeImageHandler = (e: any) => {
-  //   if (e.target.files[0]) {
-  //     // No Storage Bucket defined in Firebase Options
-  //     storage.ref('test').put(e.target.files[0])
-  //     e.target.value = "";
-  //   }
-  // };
-
   const goDetail = (id: string): void => {
     if (user) {
       router.push('/detail/' + id);
