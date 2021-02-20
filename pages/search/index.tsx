@@ -11,22 +11,14 @@ import {
   Avatar,
   Chip,
 } from '@material-ui/core';
-import Layout from '../../components/ui/Layout';
-import DatePickerJP from '../../components/ui/DatePickerJP';
+import Layout from '../../components/Layout';
+import DatePickerJP from '../../components/DatePickerJP';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 // import {storage} from '../../firebase/clientApp';
-import LoginRequestModal from '../../components/ui/LoginRequestModal';
+import LoginRequestModal from '../../components/LoginRequestModal';
 import { useUser } from '../../context/userContext';
 import { useRouter } from 'next/router';
-
-interface walkerCardProp {
-  id: string;
-  name: string;
-  avaterPath?: string;
-  headerPath?: string;
-  tags: string[];
-  place: string;
-}
+import { Walker } from '../../model/walker';
 
 const Search: React.FC = () => {
   const { user } = useUser();
@@ -36,7 +28,7 @@ const Search: React.FC = () => {
     new Date()
   );
   const [loading, setLoading] = useState<boolean>(true);
-  const [list, setList] = useState<walkerCardProp[]>([]);
+  const [list, setList] = useState<Walker[]>([]);
   const [LoginRequestOpen, setLoginRequestOpen] = useState<boolean>(false);
 
   useEffect(() => {
@@ -64,14 +56,6 @@ const Search: React.FC = () => {
     setLoading(false);
   }, [list]);
 
-  // const onChangeImageHandler = (e: any) => {
-  //   if (e.target.files[0]) {
-  //     // No Storage Bucket defined in Firebase Options
-  //     storage.ref('test').put(e.target.files[0])
-  //     e.target.value = "";
-  //   }
-  // };
-
   const goDetail = (id: string): void => {
     if (user) {
       router.push('/detail/' + id);
@@ -80,7 +64,7 @@ const Search: React.FC = () => {
     }
   };
 
-  const walkerCard = (walker: walkerCardProp): JSX.Element => {
+  const walkerCard = (walker: Walker): JSX.Element => {
     const defaultHeader =
       'url(https://firebasestorage.googleapis.com/v0/b/bark-wark.appspot.com/o/mitte102520950_TP_V.jpg?alt=media&token=3b564cf2-e952-412b-9d1f-bf1bb6d6856b)';
     return (

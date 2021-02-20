@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
 import EventNoteIcon from '@material-ui/icons/EventNote';
-import DefaultButton from './ui/Button/DefaultButton';
+import DefaultButton from './Button/DefaultButton';
 import { Typography, Grid, Card } from '@material-ui/core';
 import { useRouter } from 'next/router';
 

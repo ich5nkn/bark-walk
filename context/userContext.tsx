@@ -7,7 +7,7 @@ import {
   removeUserCookie,
   setUserCookie,
 } from '../utils/auth/userCookies';
-import { UserData } from '../utils/auth/userData';
+import { User } from '../model/user';
 
 // TODO: ContextAPIに型を付与する
 const UserContext = createContext({});
@@ -34,7 +34,7 @@ const UserContextComp = ({ children }: any): JSX.Element => {
     const existPaths = ['/', '/search', '/auth'];
     // 未ログイン状態で閲覧できるページ以外の場合 かつ 未ログインの場合にルートページにリダイレクト
     if (existPaths.includes(router.pathname) === false) {
-      const userFromCookie: UserData = getUserFromCookie();
+      const userFromCookie: User = getUserFromCookie();
       // クッキーにUserDataがない場合はルートページにリダイレクトする
       if (!userFromCookie) {
         router.push('/');
@@ -46,7 +46,7 @@ const UserContextComp = ({ children }: any): JSX.Element => {
     // Listen authenticated user
     const unsubscriber = firebase
       .auth()
-      .onAuthStateChanged(async (user: UserData) => {
+      .onAuthStateChanged(async (user: User) => {
         try {
           if (user) {
             // User is signed in.

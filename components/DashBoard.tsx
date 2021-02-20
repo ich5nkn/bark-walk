@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { UserData } from '../../utils/auth/userData';
+import { User } from '../model/user';
 import firebase from 'firebase/app';
 import Link from 'next/link';
 import { Avatar, Typography, Card } from '@material-ui/core';
 import { format } from 'date-fns';
 
 interface Props {
-  user: UserData;
+  user: User;
   logout?: () => Promise<void>;
 }
 
