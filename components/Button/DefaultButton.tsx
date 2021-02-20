@@ -6,7 +6,7 @@ type Props = {
   onClick: () => void;
 };
 
-const DefaultButton: React.FC<Props> = ({ children, onClick }) => {
+const DefaultButton: React.FC<Props> = ({ children, onClick, ...props }) => {
   return (
     <Button
       variant="contained"
@@ -14,6 +14,7 @@ const DefaultButton: React.FC<Props> = ({ children, onClick }) => {
       style={{ color: '#FFF' }}
       onClick={onClick}
       data-testid="defaultButton"
+      {...props}
     >
       {children}
     </Button>

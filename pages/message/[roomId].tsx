@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import * as firebase from 'firebase';
+import Layout from '../../components/Layout';
+import { TextField } from '@material-ui/core';
+import DefaultButton from '../../components/Button/DefaultButton';
+// import SendIcon from '@material-ui/icons';
 
 interface messageObj {
   message: string;
@@ -12,6 +16,7 @@ const Message = (): JSX.Element => {
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
   const [messages, setMessages] = useState<messageObj[]>([]);
+  const [inputMessage, setInputMessage] = useState<string>('');
 
   useEffect(() => {
     if (router.asPath !== router.route) {
@@ -39,11 +44,23 @@ const Message = (): JSX.Element => {
     return <div>loading...</div>;
   }
   return (
-    <div>
+    <Layout>
+      <TextField
+        value={inputMessage}
+        onChange={(e) => setInputMessage(e.target.value)}
+        placeholder="メッセージを入力"
+      />
+      <DefaultButton
+        onClick={() => {
+          console.log('送信');
+        }}
+      >
+        送信
+      </DefaultButton>
       {messages.map((message, idx) => (
         <div key={idx}>{message.message}</div>
       ))}
-    </div>
+    </Layout>
   );
 };
 
