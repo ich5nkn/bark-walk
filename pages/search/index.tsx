@@ -117,7 +117,7 @@ const Search: React.FC = () => {
   };
 
   return (
-    <Layout>
+    <Layout loading={loading}>
       <Grid container>
         <Grid item xs={6} style={{ padding: '20px 10px' }}>
           <DatePickerJP
@@ -149,9 +149,7 @@ const Search: React.FC = () => {
           </Typography>
         </div>
         <Grid item container spacing={2}>
-          {loading ? (
-            <div style={{ marginTop: 30 }}>読込中...</div>
-          ) : list.length === 0 ? (
+          {list.length === 0 ? (
             <div style={{ marginTop: 30 }}>
               条件に一致するドッグウォーカーはみつかりませんでした
             </div>
