@@ -5,9 +5,9 @@ import Layout from '../components/Layout';
 import DashBoard from '../components/DashBoard';
 
 const Home: React.FC = () => {
-  const { user, logout } = useUser();
+  const { user, logout, loadingUser } = useUser();
   return (
-    <Layout>
+    <Layout loading={loadingUser}>
       {user ? <DashBoard user={user} logout={logout} /> : <Welcome />}
     </Layout>
   );
