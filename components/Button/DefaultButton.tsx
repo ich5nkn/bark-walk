@@ -1,20 +1,22 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { ButtonProps } from '@material-ui/core';
 
-type Props = {
+interface DefaultButtonProps extends ButtonProps {
   children: React.ReactNode;
-  onClick: () => void;
-};
+}
 
-const DefaultButton: React.FC<Props> = ({ children, onClick, ...props }) => {
+const DefaultButton: React.FC<DefaultButtonProps> = ({
+  children,
+  ...props
+}) => {
   return (
     <Button
+      {...props}
       variant="contained"
       color="primary"
       style={{ color: '#FFF' }}
-      onClick={onClick}
       data-testid="defaultButton"
-      {...props}
     >
       {children}
     </Button>

@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 import Layout from '../../components/Layout';
 import { TextField } from '@material-ui/core';
 import DefaultButton from '../../components/Button/DefaultButton';
-// import SendIcon from '@material-ui/icons';
+import SendIcon from '@material-ui/icons/Send';
 
 interface messageObj {
   message: string;
@@ -54,6 +54,7 @@ const Message = (): JSX.Element => {
         onClick={() => {
           console.log('送信');
         }}
+        endIcon={<SendIcon />}
       >
         送信
       </DefaultButton>
