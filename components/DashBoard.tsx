@@ -7,7 +7,6 @@ import { format } from 'date-fns';
 
 interface Props {
   user: User;
-  logout?: () => Promise<void>;
 }
 
 interface chatCardData {
