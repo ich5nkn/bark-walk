@@ -9,9 +9,22 @@ import {
 } from '../utils/auth/userCookies';
 import { User } from '../model/user';
 
-// TODO: ContextAPIに型を付与する
-const UserContext = createContext({});
-const UserContextComp = ({ children }: any): JSX.Element => {
+type UserContext = {
+  user: User;
+  loadingUser: boolean;
+  logout: () => void;
+};
+
+const defaultUserContext = {
+  user: { uid: '', displayName: '', email: '', photoURL: '' },
+  loadingUser: false,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  logout: () => {},
+};
+
+const UserContext = createContext<UserContext>(defaultUserContext);
+
+const UserContextComp: React.FC = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loadingUser, setLoadingUser] = useState(true);
   const router = useRouter();
@@ -86,4 +99,4 @@ const UserContextComp = ({ children }: any): JSX.Element => {
 export default UserContextComp;
 
 // Custom hook that shorhands the context!
-export const useUser = (): any => useContext(UserContext);
+export const useUser = (): UserContext => useContext(UserContext);
